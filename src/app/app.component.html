@@ -1,9 +1,10 @@
-<app-header></app-header>
+<app-header (navTo)="onNavTo($event)"></app-header>
+<hr>
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <app-recipes></app-recipes>
-      <app-shopping-list></app-shopping-list>
+      <app-recipes *ngIf="secVisible === 'recipes'"></app-recipes>
+      <app-shopping-list *ngIf="secVisible === 'shopping-book'"></app-shopping-list>
     </div>
   </div>
 </div> 

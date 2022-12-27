@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, EventEmitter, Output } from "@angular/core";
 
 @Component({
     selector: 'app-header',
@@ -7,5 +7,9 @@ import { Component } from "@angular/core";
 })
 
 export class HeaderComponent {
+    @Output('navTo') tab = new EventEmitter<string>();
     
+    tabsNav(section: string) {
+        this.tab.emit(section);  
+    }
 }

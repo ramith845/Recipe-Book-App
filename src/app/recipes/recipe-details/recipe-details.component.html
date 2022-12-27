@@ -1,1 +1,32 @@
-<p>RECIPE DETAILS</p>
+<div class="row">
+    <div class="col-xs-12">
+        <img [src]="details.imgPath" alt="no imgage" class="img-fluid" style="max-height: 300px;">
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <h1>{{ details.name }}</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="btn-group" role="group">
+            <button id="btnGroupDrop1" role="button" class="btn btn-primary dropdown-toggle">Dropdown</button>
+            <ul class="dropdown-menu">
+                <li><a href="#">To Shopping List</a></li>
+                <li><a href="#">Edit Recipe</a></li>
+                <li><a href="#">Delete Recipe</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        {{ details.description }}
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        Ingredients
+    </div>
+</div>

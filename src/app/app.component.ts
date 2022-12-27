@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'First-Project';
+  secVisible = 'shopping-book';
+  onNavTo(section: string) {
+    this.secVisible = section;
+  }
 }

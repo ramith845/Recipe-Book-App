@@ -1,1 +1,16 @@
-<p>RECIPE ITEMS</p>
+<a href="#" class="list-group-item list-group-item-action" (click)="onActiveItem()" >
+    
+    <div class="d-flex w-100 justify-content-between">
+        <div>
+            <h4>{{ item['name'] }}</h4>
+            <p>{{ item['description'] }}</p>
+        </div>
+
+        <div>
+            <img [src]="item['imgPath']" alt="{{ item.imgPath }}" class="img-fluid rounded-circle"
+                style="max-height: 100px;">
+        </div>
+    </div>
+
+</a>
+<!-- <button class="btn btn-info" (click)="out()">Out</button> -->
