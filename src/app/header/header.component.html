@@ -12,13 +12,18 @@
             </ul>
             <ul class="nav navbar-nav ms-auto">
                 <li class="nav-item active dropdown">
-                    <a href="#" class="dropdown-toggle nav-link">Dropdown</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="">Save Data</a></li>
-                        <li><a href="">Fetch Data</a></li>
+                    <a href="#" 
+                      id="navActionDrop" 
+                      class="nav-link" 
+                      app-dropdown>Dropdown</a>
+
+                    <ul class="dropdown-menu" aria-labelledby="navActionDrop">
+                        <li><a class="dropdown-item" href="">Save Data</a></li>
+                        <li><a class="dropdown-item" href="">Fetch Data</a></li>
                     </ul>
                 </li>
             </ul>
         </div>
     </div>
 </nav>
+
