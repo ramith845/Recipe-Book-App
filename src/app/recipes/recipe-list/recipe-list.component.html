@@ -6,11 +6,7 @@
 <hr>
 <div class="row">
     <div class="col-sm-12 list-group">
-        <app-recipe-item 
-            class="rcorners1" 
-            *ngFor="let recipe of recipes" 
-            [item]="recipe" 
-            (recipeSelected)="onRecipeSelected(recipe)">
+        <app-recipe-item class="rcorners1" *ngFor="let recipe of recipes" [item]="recipe">
         </app-recipe-item>
     </div>
 </div>
