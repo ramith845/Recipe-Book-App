@@ -1,17 +1,10 @@
-<app-header (navTo)="onNavTo($event)"></app-header>
+<app-header></app-header>
 <hr>
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <app-recipes *ngIf="secVisible === 'recipes'"></app-recipes>
-      <app-shopping-list *ngIf="secVisible === 'shopping-book'"></app-shopping-list>
-      <!-- <div class="dropdown">
-        <button id="btnDrop1" class="btn btn-primary dropdown-toggle" app-dropdown>Button</button>
-        <ul class="dropdown-menu" aria-labelledby="btnDrop1">
-          <li><a href="#" class="dropdown-item">1</a></li>
-          <li><a href="#" class="dropdown-item">2</a></li>
-        </ul>
-      </div> -->
+      <!-- Router Navigation -->
+      <router-outlet></router-outlet>
     </div>
   </div>
 </div> 

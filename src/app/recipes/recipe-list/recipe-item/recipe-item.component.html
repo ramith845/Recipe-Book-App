@@ -1,4 +1,7 @@
-<a href="#" class="list-group-item list-group-item-action" (click)="onActiveItem()" >
+<a style="cursor: pointer;" 
+   class="list-group-item list-group-item-action" 
+   [routerLink]="[index]"
+   routerLinkActive="active">
     
     <div class="d-flex w-100 justify-content-between">
         <div>
