@@ -18,8 +18,8 @@
                       app-dropdown>Dropdown</a>
 
                     <ul class="dropdown-menu" aria-labelledby="navActionDrop">
-                        <li><a class="dropdown-item" href="">Save Data</a></li>
-                        <li><a class="dropdown-item" href="">Fetch Data</a></li>
+                        <li><a class="dropdown-item" (click)="onSaveData()" style="cursor: pointer;">Save Data</a></li>
+                        <li><a class="dropdown-item" (click)="onFetchData()" style="cursor: pointer;">Fetch Data</a></li>
                     </ul>
                 </li>
             </ul>
