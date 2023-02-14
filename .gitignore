@@ -37,7 +37,7 @@ yarn-error.log
 testem.log
 /typings
 src/app/shared/no_image_found.jpg
-
+.vscode/*
 # System files
 .DS_Store
 Thumbs.db
