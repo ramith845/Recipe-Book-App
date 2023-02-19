@@ -16,8 +16,8 @@ export class AuthComponent implements OnDestroy {
   isLoginMode = true;
   isLoading = false;
   error: string = null;
-  @ViewChild(PlaceholderDirective) alertHost: PlaceholderDirective;
-  closeSub: Subscription;
+  @ViewChild(PlaceholderDirective, { static: false }) alertHost: PlaceholderDirective;
+  private closeSub: Subscription;
   constructor(private authService: AuthService, private router: Router) {}
 
   onSwitchMode() {
@@ -33,8 +33,8 @@ export class AuthComponent implements OnDestroy {
     const observer = {
       next: (response) => {
         console.log(response);
-        this.router.navigate(['recipes']);
         this.isLoading = false;
+        this.router.navigate(['/recipes']);
       },
       error: (errormsg) => {
         console.log(errormsg);
