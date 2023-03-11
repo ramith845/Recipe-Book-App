@@ -1,8 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { Ingredient } from '../shared/ingredient.model';
+import { Store } from '@ngrx/store';
+import { Observable, Subscription } from 'rxjs';
 
-import { ShoppingListService } from './shopping-list.service';
+import { Ingredient } from '../shared/ingredient.model';
+import * as fromShoppingList from './store/shopping-list.reducer';
+import * as ShoppingListActions from './store/shopping-list.actions';
 
 @Component({
   selector: 'app-shopping-list',
@@ -10,22 +12,28 @@ import { ShoppingListService } from './shopping-list.service';
   styleUrls: ['./shopping-list.component.css'],
 })
 export class ShoppingListComponent implements OnInit, OnDestroy {
-  ingredients: Ingredient[];
+  ingredients: Observable<{ ingredients: Ingredient[] }>;
   ingChngSub: Subscription;
 
   selectedItem = null;
-  constructor(private slService: ShoppingListService) {}
+  constructor(private store: Store<fromShoppingList.AppState>) {}
 
   ngOnInit(): void {
-    this.ingredients = this.slService.getIngredients();
-    this.ingChngSub = this.slService.ingredientsChanged.subscribe(
-      (list: Ingredient[]) => (this.ingredients = list)
-    );
+    // Overhaulin: here data is managed here is using ngrx state management👌💕
+    // Observable is returned
+    this.ingredients = this.store.select('shoppingList');
+
+    // Old way of managing data using services 👎
+    // this.ingredients = this.slService.getIngredients();
+    // this.ingChngSub = this.slService.ingredientsChanged.subscribe(
+    //   (list: Ingredient[]) => (this.ingredients = list)
+    // );
   }
 
   onEditItem(index: number) {
     // this.selectedItem = index;
-    this.slService.startedEditing.next(index);
+    // this.slService.startedEditing.next(index);
+    this.store.dispatch(new ShoppingListActions.StartEdit(index));
   }
   // onIngredientAdded(ingredient: Ingredient) {
   //   console.log(ingredient)
@@ -33,6 +41,6 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
   // }
 
   ngOnDestroy(): void {
-    this.ingChngSub.unsubscribe();
+    // this.ingChngSub.unsubscribe();
   }
 }

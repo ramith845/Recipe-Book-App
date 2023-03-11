@@ -1,11 +1,11 @@
 <div class="row">
-    <div class="col-xs-12">
+    <div class="col-sm-8">
         <app-shopping-edit></app-shopping-edit>
         <hr>
         <ul class="list-group">
             <a  class="list-group-item" style="cursor: pointer"
                 [ngClass]="{'active': selectedItem === i}"
-                *ngFor="let ingredient of ingredients; let i = index"
+                *ngFor="let ingredient of (ingredients | async).ingredients; let i = index"
                 (click)=onEditItem(i)>
                 {{ ingredient.name }} ({{ ingredient.amount }}) 
             </a>
