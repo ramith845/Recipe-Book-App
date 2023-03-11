@@ -4,6 +4,9 @@
     </div>
 </div>
 <hr>
+<div class="text-center" *ngIf="recipes.length === 0">
+    <h3><small>Manage>Fetch Data</small></h3>
+</div>
 <div class="row">
     <div class="col-sm-12 list-group">
         <app-recipe-item 

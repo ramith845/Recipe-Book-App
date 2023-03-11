@@ -9,8 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AuthInterceptor } from './auth/auth-interceptor.service';
 // import { RecipesModule } from './recipes/recipes.module';
 import { SharedModule } from './shared/shared.module';
-import { shoppingListReducer } from './shopping-list/store/shopping-list.reducer';
-
+import * as fromApp from "./store/app.reducer";
 
 @NgModule({
   declarations: [
@@ -21,7 +20,7 @@ import { shoppingListReducer } from './shopping-list/store/shopping-list.reducer
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    StoreModule.forRoot({shoppingList: shoppingListReducer}),
+    StoreModule.forRoot(fromApp.appReducer),
     // RecipesModule, 
     // Lazy loading so import should not be done for the module being lazy loaded (Auth and Shopping-list too)
     SharedModule

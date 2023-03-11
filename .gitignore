@@ -38,7 +38,8 @@ testem.log
 /typings
 src/app/shared/no_image_found.jpg
 .vscode/*
-.\src\environments\*
+./src/environments/*
+assets
 # System files
 .DS_Store
 Thumbs.db
