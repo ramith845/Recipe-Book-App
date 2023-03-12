@@ -1,11 +1,11 @@
-<div class="row h-10">
-    <div class="col-md-5">
-        <app-recipe-list></app-recipe-list>
-    </div>
-    <div class="col-md-5 ms-auto align-self-center">
-        <router-outlet></router-outlet>
+<div class="row h-80 p-3 pb-5">
+  <div class="col-md-5">
+      <app-recipe-list></app-recipe-list>
+  </div>
+  <div class="col-md-7">
+    <router-outlet></router-outlet>
 
-        <!-- <app-recipe-details *ngIf="selectedRecipe; else infoText" [details]="selectedRecipe"></app-recipe-details>
+    <!-- <app-recipe-details *ngIf="selectedRecipe; else infoText" [details]="selectedRecipe"></app-recipe-details>
         <ng-template #infoText>Please Select a Recipe!</ng-template> -->
-    </div>
+  </div>
 </div>

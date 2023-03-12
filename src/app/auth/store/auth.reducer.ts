@@ -18,7 +18,7 @@ export function authReducer(
   action: AuthActions.AuthActions
 ) {
   switch (action.type) {
-    case AuthActions.LOGIN:
+    case AuthActions.AUTHENTICATION_SUCCESS:
       const user = new User(
         action.payload.email,
         action.payload.userId,
@@ -31,10 +31,14 @@ export function authReducer(
       return { ...state, user: null };
 
     case AuthActions.LOGIN_START:
+    case AuthActions.SIGN_UP_START:
       return { ...state, authError: null, loading: true };
 
-    case AuthActions.LOGIN_FAIL:
+    case AuthActions.AUTHENTICATION_FAIL:
       return { ...state, user: null, authError: action.payload, loading: false };
+    
+    case AuthActions.RESET_ERROR:       // For when an error occurs we need to reset error when modal is closed
+      return {...state, authError: null}  
 
     default:
       return state;

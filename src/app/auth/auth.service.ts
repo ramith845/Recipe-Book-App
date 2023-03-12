@@ -1,24 +1,8 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, throwError } from 'rxjs';
-import { catchError, tap } from 'rxjs/operators';
-import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 
-import { User } from './user.model';
-import { environment } from '../../environments/environment.development';
 import * as fromApp from '../store/app.reducer';
-import * as AuthActions from '../auth/store/auth.actions';
-
-export interface AuthResponse {
-  idToken: string;
-  email: string;
-  refreshToken: string;
-  expiresIn: string;
-  localId: string;
-  kind: string;
-  registered?: boolean;
-}
+import * as AuthActions from '../auth/store/auth.actions'
 
 @Injectable({
   providedIn: 'root',
@@ -28,151 +12,19 @@ export class AuthService {
   private tokenExpirationTimer: any;
 
   constructor(
-    private http: HttpClient,
-    private router: Router,
     private store: Store<fromApp.AppState>
   ) {}
 
-  signup(email: string, password: string) {
-    return this.http
-      .post<AuthResponse>(
-        'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=' +
-          environment.firebaseAPIKey,
-        {
-          email: email,
-          password: password,
-          returnSecureToken: true,
-        }
-      )
-      .pipe(
-        catchError(this.errorHandler),
-        tap((resData) => {
-          this.authenticationHandler(
-            resData.email,
-            resData.localId,
-            resData.idToken,
-            +resData.expiresIn
-          );
-        })
-      );
-  }
-
-  signin(email: string, password: string) {
-    return this.http
-      .post<AuthResponse>(
-        'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=' +
-          environment.firebaseAPIKey,
-        {
-          email: email,
-          password: password,
-          returnSecureToken: true,
-        }
-      )
-      .pipe(
-        catchError(this.errorHandler),
-        tap((resData) => {
-          this.authenticationHandler(
-            resData.email,
-            resData.localId,
-            resData.idToken,
-            +resData.expiresIn
-          );
-        })
-      );
-  }
-
-  autoSignin() {
-    const userData: {
-      email: string;
-      id: string;
-      _token: string;
-      _tokenExpirationDate: string;
-    } = JSON.parse(localStorage.getItem('userData'));
-    if (!userData) {
-      return;
-    }
-
-    const loadedUser = new User(
-      userData.email,
-      userData.id,
-      userData._token,
-      new Date(userData._tokenExpirationDate)
-    );
-
-    if (loadedUser.token) {
-      // this.user.next(loadedUser);
-      this.store.dispatch(
-        new AuthActions.Login({
-          email: loadedUser.email,
-          userId: loadedUser.id,
-          token: loadedUser.token,
-          expirationDate: new Date(userData._tokenExpirationDate),
-        })
-      );
-      const expirationDuration =
-        new Date(userData._tokenExpirationDate).getTime() -
-        new Date().getTime();
-      this.autoSignout(expirationDuration);
-    }
-  }
-
-  signout() {
-    // this.user.next(null);
-    this.store.dispatch(new AuthActions.Logout());
-    this.router.navigate(['auth']);
-    localStorage.removeItem('userData');
-
-    if (this.tokenExpirationTimer) {
-      clearTimeout(this.tokenExpirationTimer);
-    }
-    this.tokenExpirationTimer = null;
-  }
-
-  autoSignout(expirationDuration: number) {
-    console.log(
-      `session expires in: ${(expirationDuration / 60000).toFixed(2)} mins`
-    );
-
+  setLogoutTimer(expirationDuration: number) {
     this.tokenExpirationTimer = setTimeout(() => {
-      this.signout();
+      this.store.dispatch(new AuthActions.Logout)
     }, expirationDuration);
   }
 
-  private authenticationHandler(
-    email: string,
-    userId: string,
-    token: string,
-    expiresIn: number
-  ) {
-    const expirationDate = new Date(new Date().getTime() + expiresIn * 1000);
-    const user = new User(email, userId, token, expirationDate);
-    // this.user.next(user);
-    this.store.dispatch(
-      new AuthActions.Login({ email, userId, token, expirationDate })
-    );
-    this.autoSignout(expiresIn * 1000);
-    localStorage.setItem('userData', JSON.stringify(user));
-  }
-
-  private errorHandler(errorResponse: HttpErrorResponse) {
-    let errormsg = 'There was an error';
-    if (!errorResponse.error || !errorResponse.error.error) {
-      return throwError(() => errormsg);
+  clearLogoutTimer() {
+    if (this.tokenExpirationTimer) {
+      clearTimeout(this.tokenExpirationTimer);
+      this.tokenExpirationTimer = null;
     }
-    switch (errorResponse.error.error.message) {
-      case 'EMAIL_EXISTS':
-        errormsg = 'This email already exists';
-        break;
-      case 'EMAIL_NOT_FOUND':
-        errormsg = 'This email does not exists';
-        break;
-      case 'INVALID_PASSWORD':
-        errormsg = 'This password is not correct';
-        break;
-      case 'USER_DISABLED':
-        errormsg = 'The user account has been disabled by an administrator';
-        break;
-    }
-    return throwError(() => errormsg);
   }
 }
