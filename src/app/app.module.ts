@@ -14,6 +14,7 @@ import { SharedModule } from './shared/shared.module';
 import * as fromApp from "./store/app.reducer";
 import { AuthEffects } from './auth/store/auth.effects';
 import { environment } from '../environments/environment';
+import { RecipeEffects } from './recipes/store/recipes.effects';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,7 @@ import { environment } from '../environments/environment';
     AppRoutingModule,
     HttpClientModule,
     StoreModule.forRoot(fromApp.appReducer),
-    EffectsModule.forRoot([AuthEffects]),
+    EffectsModule.forRoot([AuthEffects, RecipeEffects]),
     StoreDevtoolsModule.instrument({logOnly: environment.production}),
     // RecipesModule, 
     // Lazy loading so import should not be done for the module being lazy loaded (Auth and Shopping-list too)
