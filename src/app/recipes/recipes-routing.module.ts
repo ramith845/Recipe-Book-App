@@ -5,7 +5,7 @@ import { RecipesComponent } from './recipes.component';
 import { AuthGuard } from '../auth/auth.guard';
 import { RecipeDetailsComponent } from './recipe-details/recipe-details.component';
 import { RecipeEditComponent } from './recipe-edit/recipe-edit.component';
-import { RecipeStartComponent } from './recipe-start/recipe-start.component';
+import { RecipeListComponent } from './recipe-list/recipe-list.component';
 import { RecipesResolverService } from './recipes-resolver.service';
 
 const routes: Routes = [
@@ -14,7 +14,7 @@ const routes: Routes = [
     component: RecipesComponent,
     canActivate: [AuthGuard],
     children: [
-      { path: '', component: RecipeStartComponent },
+      { path: '', component: RecipeListComponent },
       { path: 'new', component: RecipeEditComponent },
       {
         path: ':id',

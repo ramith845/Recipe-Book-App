@@ -1,28 +1,59 @@
 <div class="row">
-    <div class="col-xs-12">
-        <form (ngSubmit)="onSubmit(f)" #f="ngForm">
-            <div class="row">
-                <div class="row gy-2">
-                    <div class="col-sm-5 form-group">
-                        <label for="name">Name</label>
-                        <input type="text" id="name" name="name" class="form-control" pattern="^[A-Z]{1}[\w]+$" required ngModel>
-                    </div>
-                    <div class="col-sm-2 form-group">
-                        <label for="amount">Amount</label>
-                        <input type="number"  id="amount" name="amount" class="form-control" pattern="^[1-9][0-9]*$" required ngModel>
-                    </div>
-                </div>
+  <div class="col-xs-12">
+    <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+      <div class="row">
+        <div class="row gy-2">
+          <div class="col-sm-5 form-group">
+            <label for="name">Name</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              class="form-control"
+              pattern="^[A-Z]{1}[\w]+$"
+              required
+              ngModel
+            />
+          </div>
+          <div class="col-sm-2 form-group">
+            <label for="amount">Amount</label>
+            <input
+              type="number"
+              id="amount"
+              name="amount"
+              class="form-control"
+              pattern="^[1-9][0-9]*$"
+              required
+              ngModel
+            />
+          </div>
+        </div>
 
-                <div class="row gy-2">
-                    <div class="col-xs-12">
-                        <div class="btn-group">
-                            <button type="submit" class="btn btn-success" [disabled]="f.invalid">{{ editMode? 'Update' : 'Add' }}</button>
-                            <button type="button" class="btn btn-danger" (click)="onDelete()" *ngIf="editMode">Delete</button>
-                            <button type="button" class="btn btn-primary" (click)="onClear()">Clear</button>
-                        </div>
-                    </div>
-                </div>
+        <div class="row gy-2">
+          <div class="col-xs-12">
+            <div class="btn-group">
+              <button
+                type="submit"
+                class="btn btn-success"
+                [disabled]="f.invalid"
+              >
+                {{ editMode ? "Update" : "Add" }}
+              </button>
+              <button
+                type="button"
+                class="btn btn-danger"
+                (click)="onDelete()"
+                *ngIf="editMode"
+              >
+                Delete
+              </button>
+              <button type="button" class="btn btn-primary" (click)="onClear()">
+                Clear
+              </button>
             </div>
-        </form>
-    </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
 </div>

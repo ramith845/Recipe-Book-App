@@ -1,3 +1,7 @@
-.rcorners1 {
-    border-radius: 6px;
-  }
+.grow {
+  transition: all 500ms ease-in-out;
+}
+
+.grow:hover {
+  transform: scale(1.1);
+}

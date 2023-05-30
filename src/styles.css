@@ -1,1 +1,19 @@
-/* You can add global styles to this file, and also import other style files */
+body {
+  width: 100%;
+  max-height: 100vh;
+  overflow-y: scroll;
+  scrollbar-width: thin;
+  scrollbar-color: inherit;
+}
+
+body::-webkit-scrollbar {
+  width: 6px;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: rgb(200, 200, 200) ;
+}
+
+body::-webkit-scrollbar-track {
+  background-color: grey;
+}

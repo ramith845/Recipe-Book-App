@@ -21,10 +21,19 @@ export interface AuthResponse {
   providedIn: 'root',
 })
 export class AuthService {
+  private fetchedOnLogin = false;
   user = new BehaviorSubject<User>(null);
   private tokenExpirationTimer: any;
 
   constructor(private http: HttpClient, private router: Router) {}
+
+  hasFetchRecipesCalled(): boolean {
+    return this.fetchedOnLogin;
+  }
+
+  setFetchRecipesCalled () {
+    this.fetchedOnLogin = true;
+  }
 
   signup(email: string, password: string) {
     return this.http
@@ -100,6 +109,7 @@ export class AuthService {
   }
 
   signout() {
+    this.fetchedOnLogin = false;
     this.user.next(null);
     this.router.navigate(['auth']);
     localStorage.removeItem('userData');

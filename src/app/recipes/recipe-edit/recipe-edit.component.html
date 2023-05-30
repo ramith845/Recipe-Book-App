@@ -1,69 +1,126 @@
 <div class="row">
-    <div class="col-sm-12">
-        <form [formGroup]="recipeForm" (ngSubmit)="onSubmit()">
-            <div class="row mb-3">
-                <div class="col-sm-12">
-                    <label for="name" class="form-label">Name</label>
-                    <input type="text" name="name" id="name" class="form-control" formControlName="name">
-                </div>
+  <div class="col-sm-6 content">
+    <form [formGroup]="recipeForm" (ngSubmit)="onSubmit()">
+      <div class="row mb-3">
+        <div class="col-sm-12">
+          <label for="name" class="form-label">Name</label>
+          <input
+            type="text"
+            name="name"
+            id="name"
+            class="form-control"
+            formControlName="name"
+          />
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-sm-12">
+          <label for="imgPath" class="form-label">Image URL</label>
+          <input
+            type="text"
+            name="imgPath"
+            id="imgPath"
+            class="form-control"
+            formControlName="imgPath"
+            #imgPath
+          />
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-sm-12">
+          <label for="description" class="form-label">Description</label>
+          <textarea
+            name="description"
+            id="description"
+            class="form-control"
+            rows="4"
+            formControlName="description"
+          ></textarea>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-sm-12" formArrayName="ingredients">
+          <div class="row mb-3">
+            <div class="col-sm-12">
+              <button
+              id="addBtn"
+              type="button"
+              (click)="onAddIngredient()"
+              >
+              <svg class="svg-add-btn" width="20" height="20" viewBox="0 0 20 20">
+                <rect y="7.5" width="20" height="5" rx="2.5"/>
+                <rect x="7.5" width="5" height="20" rx="2.5"/>
+              </svg>
+              </button>
             </div>
+          </div>
 
-            <div class="row mb-3">
-                <div class="col-sm-12">
-                    <label for="imgPath" class="form-label">Image URL</label>
-                    <input type="text" name="imgPath" id="imgPath" class="form-control" formControlName="imgPath" #imgPath>
-                </div>
+          <div
+            class="row mb-2"
+            *ngFor="let ingredient of ingredientsCtrls; let i = index"
+            [formGroupName]="i"
+          >
+            <div class="col-8">
+              <input
+                type="text"
+                name="name"
+                id="name"
+                class="form-control"
+                formControlName="name"
+              />
             </div>
-
-            <div class="row mb-3">
-                <div class="col-sm-12">
-                    <img [src]="imgPath.value" class="img-fluid">
-                </div>
+            <div class="col-2">
+              <input
+                type="number"
+                name="amount"
+                id="amount"
+                class="form-control"
+                formControlName="amount"
+              />
             </div>
-
-            <div class="row mb-3">
-                <div class="col-sm-12">
-                    <label for="description" class="form-label">Description</label>
-                    <textarea name="description" id="description" class="form-control" rows="4"
-                        formControlName="description"></textarea>
-                </div>
+            <div class="col-2 text-center">
+              <button
+                id="crossBtn"
+                type="button"
+                class="btn btn-danger rounded-circle"
+                (click)="onDeleteIngredient(i)"
+              >
+              <svg class="svg-remove-btn" width="20" height="20" viewBox="0 0 20 20">
+                <rect y="7.5" width="20" height="5" rx="2.5"/>
+                <rect x="7.5" width="5" height="20" rx="2.5"/>
+              </svg>
+              </button>
             </div>
+          </div>
+        </div>
+      </div>
 
-            <div class="row mb-3">
-                <div class="col-sm-12" formArrayName="ingredients">
-                    <div class="row mb-2">
-                        <div class="col-sm-12">
-                            <button type="button" class="btn btn-success" (click)="onAddIngredient()">Add</button>
-                        </div>
-                    </div>
-                    
-                    <div class="row mb-2" 
-                        *ngFor="let ingredient of ingredientsCtrls; let i = index"
-                        [formGroupName]="i">
-                        <div class="col-8">
-                            <input type="text" name="name" id="name" class="form-control" formControlName="name">
-                        </div>
-                        <div class="col-2">
-                            <input type="number" name="amount" id="amount" class="form-control"
-                                formControlName="amount">
-                        </div>
-                        <div class="col-2 text-center">
-                            <button type="button" class="btn btn-danger" (click)="onDeleteIngredient(i)">X</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="row">
-                <div class="col-2">
-                    <button type="button" class="btn btn-danger" (click)="onCancel()" style="display: block; width: 100%;">Cancel</button>
-                </div>
-                <div class="col-2 offset-8">
-                    <button type="submit" class="btn btn-success" [disabled]="!recipeForm.valid" style="display: block; width: 100%;">Save</button>
-                </div>
-            </div>
-
-        </form>
+      <div class="row">
+        <div class="col-2">
+          <button type="button" class="btn btn-danger" (click)="onCancel()">
+            Cancel
+          </button>
+        </div>
+        <div class="col-2 offset-8">
+          <button
+            type="submit"
+            class="btn btn-success"
+            [disabled]="!recipeForm.valid"
+          >
+            Save
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="col-sm-6">
+    <div class="row mb-3">
+      <div class="col-sm-12 responsive-img">
+        <img [src]="imgPath.value" class="img-fluid" />
+      </div>
     </div>
+  </div>
 </div>

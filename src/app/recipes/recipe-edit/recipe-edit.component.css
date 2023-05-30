@@ -1,3 +1,49 @@
+.content {
+    display: flex;
+    justify-content: center;
+    align-items: start;
+}
+
+.content form {
+    width: 100%;
+}
+
+.responsive-img {
+    display: inherit;
+    justify-content: center;
+}
+
+.responsive-img img {
+    max-width: 75%;
+    overflow: hidden;
+}
+
+#addBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: none;
+    background-color: transparent;
+}
+
+.svg-add-btn {
+    height: 100%;
+    fill: green;
+}
+
+#crossBtn {
+    display: flex;
+    align-items: center;
+    padding: 0;
+    background-color: transparent;
+    border: none;
+}
+
+.svg-remove-btn {
+    fill: crimson;
+    transform: rotate(45deg);
+}
 input.ng-invalid.ng-touched, textarea.ng-invalid.ng-touched {
     border: 1px solid red;
 }

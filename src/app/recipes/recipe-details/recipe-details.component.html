@@ -1,45 +1,112 @@
 <div class="row">
-    <div class="col-xs-12">
-        <img [src]="details.imgPath" alt="no imgage" class="img-fluid" style="max-height: 300px;">
+  <div class="col-md-5">
+    <div class="row mb-4">
+      <div class="col-sm-1">
+        <button id="backBtn" (click)="onBtnBack()">BACK</button>
+      </div>
     </div>
-</div>
-<div class="row">
-    <div class="col-xs-12">
-        <h1>{{ details.name }}</h1>
-    </div>
-</div>
-<div class="row">
-    <div class="col-xs-12">
-        <div class="dropdown">
-            <button 
-              id="btnDetailsDrop" 
-              type="button" 
-              class="btn btn-primary " 
-              app-dropdown>Dropdown</button>
 
-            <ul class="dropdown-menu" aria-labelledby="btnDetailsDrop">
-                <li>
-                    <a class="dropdown-item" 
-                    style="cursor: pointer;" 
-                    (click)="onAddToShoppingList()">To Shopping List</a>
-                </li>
-                <li><a class="dropdown-item" (click)="onEditRecipe()" style="cursor: pointer;">Edit Recipe</a></li>
-                <li><a class="dropdown-item" (click)="onDeleteRecipe()" style="cursor: pointer;">Delete Recipe</a></li>
-            </ul>
-        </div>
+    <div class="row mb-3">
+      <div class="col-sm-12">
+        <img
+          [src]="details.imgPath"
+          alt="no imgage"
+          class="img-fluid rounded"
+        />
+      </div>
     </div>
-</div>
-<div class="row">
-    <div class="col-xs-12">
-        {{ details.description }}
-    </div>
-</div>
-<div class="row">
-    <div class="col-xs-12">
-        <ul class="list-group">
-            <li *ngFor="let ingredient of details.ingredients" class="list-group-item">
-                {{ ingredient.name }} - {{ ingredient.amount }}
+
+    <div class="row mb-3">
+      <div class="col-sm-12">
+        <div class="btn-group">
+          <a role="button" class="btn btn-primary">Action</a>
+          <button
+            id="btnDetailsDrop"
+            type="button"
+            class="btn btn-primary dropdown-toggle-split"
+            app-dropdown
+          >
+            <span class="visually-hidden">Dropdown</span>
+          </button>
+
+          <ul class="dropdown-menu" aria-labelledby="btnDetailsDrop">
+            <li>
+              <a
+                class="dropdown-item"
+                style="cursor: pointer"
+                (click)="onAddToShoppingList()"
+                >To Shopping List</a
+              >
             </li>
-        </ul>
+            <li>
+              <a
+                class="dropdown-item"
+                (click)="onEditRecipe()"
+                style="cursor: pointer"
+                >Edit Recipe</a
+              >
+            </li>
+            <li>
+              <a
+                class="dropdown-item"
+                (click)="onDeleteRecipe()"
+                style="cursor: pointer"
+                >Delete Recipe</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
+
+    <div class="row mb-4">
+      <div class="col-sm-12">
+        <ul class="list-group">
+          <li
+            *ngFor="let ingredient of details.ingredients"
+            class="list-group-item"
+          >
+            {{ ingredient.name }} - {{ ingredient.amount }}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-7">
+    <div class="row mb-3">
+      <div class="col-sm-12">
+        <h1>{{ details.name }}</h1>
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <div class="col-sm-12">
+        <em class="text-break text-wrap">{{ details.description }}</em>
+        <p class="text-break text-wrap">
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Libero nobis
+          praesentium fugit nam ducimus laboriosam debitis atque. Et,
+          praesentium? Quasi, rem. Quidem eius eos rerum unde quaerat!
+          Recusandae, exercitationem saepe! Dolore velit magni asperiores animi
+          aperiam. <br /><br />
+
+          Nobis, natus corporis. Tempore quasi, qui sequi voluptatem aperiam
+          doloremque eligendi officia reiciendis quo minus omnis error officiis
+          quia dolorum similique, atque inventore. Error. Est ut nisi neque,
+          rerum sint doloribus vitae accusantium soluta culpa velit deserunt.
+          Alias ipsam aliquid ad, quo asperiores accusantium. Error fugiat
+          mollitia quas, rem cumque ipsum odio quidem qui. Dolore, minus
+          suscipit! <br /><br />
+
+          Fugiat voluptates quasi in commodi quae aspernatur, at impedit, alias
+          cumque rem numquam nemo consectetur laboriosam eum eius ad? Molestias
+          veniam laborum aliquam reprehenderit aut deserunt enim? Inventore
+          beatae molestiae reiciendis, temporibus vel, doloribus ab nesciunt
+          pariatur corrupti, iusto corporis! Quod soluta quam vitae! Impedit
+          aliquid magnam atque optio ipsa quam voluptatum ipsam dignissimos cum,
+          enim maiores! <br /><br />
+        </p>
+      </div>
+    </div>
+  </div>
 </div>
