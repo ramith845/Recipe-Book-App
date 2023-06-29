@@ -1,6 +1,13 @@
 .card {
-    box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+  box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+  transition: all 100ms ease-in-out;
 }
+
+.card:hover {
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 4px 8px;
+  transform: scale(1.025);
+}
+
 .card-img-top {
   width: 100%;
   overflow: hidden;

@@ -1,18 +1,48 @@
-.row {
-    display: flex;
-    justify-content: center;
-    align-items: start;
+.container {
+  position: absolute;
+  top: 150px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  /* width: 80%; */
+  /* height: 500px; */
+  /* flex: 0 1 500px; */
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
 }
 
-.col-sm-12 {
-    display: flex;
-    position: absolute;
-    width: 400px;
-    height: 400px;
-    align-items: center;
-    justify-content: center;
-    background-color: aliceblue;
-    border-radius: 5px;
-    border: 1px solid blanchedalmond;
-    box-shadow: 0 0 40px 5px #4196e155;
+.auth-component {
+  width: 500px;
+  padding: 40px;
+  display: grid;
+  grid-template-rows: 65px 65px 1fr;
+  grid-template-columns: 0.8fr;
+  align-content: center;
+  justify-content: center;
+  row-gap: 20px;
+
+  /* align-items: start; */
+
+  background-color: rgb(246, 246, 246);
+  border-radius: 5px;
+  /* border: 1px solid rgb(219, 219, 219); */
+  /* box-shadow: 0 0 40px 5px #4196e155; */
+}
+
+.auth-items:last-child {
+  margin-top: 30px;
+}
+
+.button-group {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+button {
+  flex: 1 1;
 }

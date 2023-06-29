@@ -6,22 +6,30 @@ const appRoutes: Routes = [
   {
     path: 'recipes',
     loadChildren: () =>
-      import('./recipes/recipes.module').then(m => m.RecipesModule),
+      import('./recipes/recipes.module').then((m) => m.RecipesModule),
   },
   {
     path: 'shopping-list',
     loadChildren: () =>
-      import('./shopping-list/shopping-list.module').then(m => m.ShoppingListModule),
+      import('./shopping-list/shopping-list.module').then(
+        (m) => m.ShoppingListModule
+      ),
   },
   {
     path: 'auth',
-    loadChildren: () =>
-      import('./auth/auth.module').then(m => m.AuthModule),
-  }
+    loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
+  },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(appRoutes, {preloadingStrategy: PreloadAllModules})],
+  imports: [
+    RouterModule.forRoot(appRoutes, {
+      preloadingStrategy: PreloadAllModules,
+      // scrollPositionRestoration: 'enabled',
+      // scrollOffset: [0, 0],
+      // anchorScrolling: "enabled"
+    }),
+  ],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
